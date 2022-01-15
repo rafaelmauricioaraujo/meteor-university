@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import ContactCollection from "../api/ContactCollection";
+
 export default ContactForm = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -6,7 +8,7 @@ export default ContactForm = () => {
 
   const saveContact = (event) => {
     event.preventDefault();
-    console.log(name, email, imageUrl);
+    ContactCollection.insert({ name, email, imageUrl });
     setName("");
     setEmail("");
     setImageUrl("");
@@ -24,7 +26,7 @@ export default ContactForm = () => {
         ></input>
       </div>
       <div>
-        <label htmlFor="email">Name</label>
+        <label htmlFor="email">Email</label>
         <input
           id="email"
           type="text"
