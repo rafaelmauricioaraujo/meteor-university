@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import ContactCollection from "../api/ContactCollection";
+import { Meteor } from "meteor/meteor";
 
 export default ContactForm = () => {
   const [name, setName] = useState("");
@@ -7,10 +7,19 @@ export default ContactForm = () => {
   const [imageUrl, setImageUrl] = useState("");
 
   const saveContact = () => {
-    ContactCollection.insert({ name, email, imageUrl });
-    setName("");
-    setEmail("");
-    setImageUrl("");
+    Meteor.call(
+      "contact.insert",
+      { name, email, imageUrl },
+      (errorResponse) => {
+        if (errorResponse) {
+          alert(errorResponse.error);
+        } else {
+          setName("");
+          setEmail("");
+          setImageUrl("");
+        }
+      }
+    );
   };
 
   return (
