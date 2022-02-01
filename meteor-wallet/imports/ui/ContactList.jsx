@@ -6,6 +6,10 @@ export default ContactList = () => {
   const contactList = useTracker(() => {
     return ContactCollection.find({}).fetch();
   });
+
+  const removeContact = (id) => {
+    Meteor.call("contact-remove", { contactId: id });
+  };
   return (
     <div>
       <div className="mt-10">
@@ -36,6 +40,9 @@ export default ContactList = () => {
                   <p className="text-sm font-medium text-gray-500 truncate">
                     {person.email}
                   </p>
+                  <a href="#" onClick={() => removeContact(person.id)}>
+                    Remove
+                  </a>
                 </div>
               </div>
             </li>
