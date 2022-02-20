@@ -1,7 +1,9 @@
-import React, { useState } from "react";
-import { Meteor } from "meteor/meteor";
-import { ErrorAlert } from "./components/ErrorAlert";
-import { SuccessAlert } from "./components/SuccessAlert";
+import React, { useState } from 'react';
+
+import { Meteor } from 'meteor/meteor';
+
+import { ErrorAlert } from './components/ErrorAlert';
+import { SuccessAlert } from './components/SuccessAlert';
 
 export default ContactForm = () => {
   const [name, setName] = useState("");
